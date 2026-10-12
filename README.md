@@ -27,3 +27,5 @@ Before using any of the scripts, please read the "Warnings and operation procedu
 
 Take a look on how it works via our TikTok video! 
 https://vm.tiktok.com/ZN8MoXddh/
+
+Also take a look at the screenshots folder to see how our script operates step-by-step. 
