@@ -25,7 +25,7 @@ Warning: Once you've selected the SSD, be careful — the installation will begi
 
 After installation, the script makes OOBE ask you for a network connection (choose "I don't have network" for the offline version, or connect to WiFi/LAN if using the online version), and to set up a username and password for the local account (password is not mandatory — you can click Next if you don't need one; the advantage is that you won't need a password to unlock/start your Windows 11 laptop anymore).
 
-After this, Windows 11 will begin the update process, which is slow — I can't fix Microsoft's servers, unfortunately :))))
+After this, Windows 11 will begin the update process which depends on your internet speeds. 
 
 That said, at some point the online version will restart 3 times (since Windows updates and installs newer drivers) and then let you into the Windows 11 desktop with its normal UI.
 
