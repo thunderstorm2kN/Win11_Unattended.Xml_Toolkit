@@ -1,35 +1,60 @@
-Requirement: In order for the program to function, you must name the file autounattend.xml and copy it to the root of the Windows 11 installer stick/media you made with Rufus/Ventoy/Media Creation Tool. If the file is not in the correct location (the folder you see when you double-click to open the Win11 stick) and not named correctly (autounattend.xml), the Win11 installer will ignore the file and ask you all the setup questions manually.
+# Windows 11 Pro autounattend.xml (English / Romanian / Norwegian)
 
-What it actually does:
+An answer file that automates most of the Windows 11 setup. All the scripts are bundled inside the single XML file and unpack themselves during setup, so you don't need extra USB partitions or separate files. It installs **Windows 11 Pro** with keyboard layouts for **English (US), Romanian (Programmers) and Norwegian**.
 
-Skips the hardware checks (TPM, Secure Boot, RAM) so it will install on machines that don't officially qualify for Win11
-Sets up keyboard/language for three locales at once (English, Romanian, and Norwegian layouts)
-Skips the Microsoft account push — sets up a local account instead, no internet required during setup
-Strips out the usual nags: Bing search integration, widgets, app suggestions, Edge's first-run popups, and "consumer feature" ads baked into the Start menu
-Applies these same settings to any new account you create later, not just the first one — so you don't need to redo this per user
-Cleans up after itself: deletes leftover setup files (including anything that might have your WiFi password saved in plaintext) once first login is complete
+## Read this first
 
-Everything runs automatically from a set of scripts bundled inside the single XML file — no extra USB partitions or separate files needed; it unpacks itself during setup.
+- **Disk warning:** The disk selection screen is the normal Windows one, and nothing is wiped automatically. But installation starts as soon as you click **Next** there, and any partition you delete or format loses its data. Double-check the disk before you click.
+- **License:** This only automates setup. It uses a generic Pro key to select the edition and does not activate Windows, so you need a valid Windows 11 **Pro** license.
+- **Lab/testing use:** The hardware bypass is meant for labs and testing, not for a work fleet. Microsoft doesn't guarantee updates on unsupported hardware.
+- **No drivers included.** Many are installed later through Windows Update (see "After installation").
 
-Caveats:
+## What it does
 
-Requires a valid Windows 11 license — this only automates setup, it doesn't touch activation
-The hardware bypass flags are meant for lab/testing use, not something I'd push to a work fleet
-No drivers included — that's still manual
+- Skips the hardware checks (TPM, Secure Boot, RAM), so it installs on machines that don't officially qualify. The CPU check is not bypassed.
+- Skips the language, edition, product key and EULA screens.
+- Adds three keyboard layouts: English (US), Romanian (Programmers) and Norwegian. The display language stays English (US), and the region is set to Romania.
+- Sets up a local account instead of pushing a Microsoft account. You choose the username and password during setup.
+- Removes the usual nags: Bing search results, widgets, app suggestions, Edge's first-run popups and Edge startup boost, and the "consumer feature" ads in the Start menu.
+- Applies these settings to every account you create later, not just the first one.
+- Small extras: automatic device encryption (BitLocker) is prevented, password expiry is disabled, file extensions are shown, Explorer opens to This PC, the taskbar search box and Task View button are hidden, and Start pins are emptied.
+- Cleans up after itself: after first login it deletes the copy of the answer file that setup leaves on the PC.
 
-The online and offline versions are meant to install Windows 11 Pro with language support for the following locales: English (US), Romanian, and Norwegian.
+## Online vs. offline
 
-Offline vs. Online warning: Please make sure NOT to choose offline unless you actually plan to install Windows 11 without a WiFi/LAN/Ethernet connection. This can reduce installation time, as tested, to 15–20 minutes, but it will require you to plug in a USB cable or use Android USB tethering afterward, since you'll need to install drivers later.
+Both use the same file. The difference is whether the PC has a network connection while you install.
 
-Warning: Once you've selected the SSD, be careful — the installation will begin as soon as you press Next.
+- **Online:** Connect Wi-Fi/Ethernet during setup. Windows will download updates and newer drivers, and restarts around 3 times (it depends on the updates available) before you reach the desktop.
+- **Offline:** Only choose this if you really plan to install without Wi-Fi/LAN/Ethernet. Writing Windows to disk is faster (about 15-20 minutes in my tests) and the update step is skipped.
+              But you'll need internet afterwards, via Ethernet or Android USB tethering, to install drivers through Windows Update.
 
-After installation, the script makes OOBE ask you for a network connection (choose "I don't have network" for the offline version, or connect to WiFi/LAN if using the online version), and to set up a username and password for the local account (password is not mandatory — you can click Next if you don't need one; the advantage is that you won't need a password to unlock/start your Windows 11 laptop anymore).
+## Preparing the USB
 
-After this, Windows 11 will begin the update process which depends on your internet speeds. 
+1. Create the Windows 11 installer stick with Rufus, Ventoy or the Media Creation Tool.
+2. Name the file exactly `autounattend.xml` and copy it to the **root** of the stick (the folder you see when you open the stick).
+3. If the file is misnamed or in the wrong place, the installer ignores it and asks every question manually.
 
-That said, at some point the online version will restart 3 times (since Windows updates and installs newer drivers) and then let you into the Windows 11 desktop with its normal UI.
+Notes:
+- **Rufus:** Don't tick Rufus's own customization options, or it may generate its own `autounattend.xml`. If in doubt, copy yours after Rufus finishes.
+- **Ventoy:** Copying the file to the root of the stick may not be enough. Ventoy usually needs its auto-install plugin configured in `ventoy.json` to point to the file.
 
-Again, the offline version skips the update process and makes writing Windows 11 to disk faster, but you'll still need to wait a while for Windows updates afterward, since they're needed to install drivers (and this makes the overall process more automatic, at least from my point of view, in this context).
+## Installing
 
+1. Boot from the USB stick (the boot menu key depends on your manufacturer).
+2. Setup skips the language, edition, key and EULA screens and shows the disk selection screen.
+3. Select your disk/partition and click **Next**. The installation starts immediately.
+4. If the PC boots into the installer again after a restart, unplug the USB stick.
 
+## First boot (OOBE)
 
+1. Windows asks for a network.
+   - **Online:** connect to Wi-Fi or Ethernet.
+   - **Offline:** choose the "I don't have internet/network" option. The exact wording and availability depend on the Windows build.
+2. Enter a username and password for the local account. The password is optional: click Next to leave it empty and Windows won't ask for it at startup. 
+                    Note that anyone with physical access to the laptop can then sign in.
+
+## After installation
+
+- Windows starts updating, and how long that takes depends on your internet speed.
+- Online: expect around 3 restarts, then you land on the normal desktop.
+- Offline: you still need to wait for Windows Update after connecting to the internet, since that's how most drivers get installed.
