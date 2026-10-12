@@ -9,15 +9,21 @@ The online and offline versions are meant to install Windows 11 Pro with languag
 
 After installation, the script makes OOBE ask you for a network connection (choose "I don't have network" for the offline version, or connect to WiFi/LAN if using the online version), and to set up a username and password for the local account (password is not mandatory — you can click Next if you don't need one; the advantage is that you won't need a password to unlock/start your Windows 11 laptop anymore).
 
-After this, Windows will begin the update process, which is slow — I can't fix Microsoft's servers, unfortunately :))) At some point, the online version will restart 3 times (since Windows installs updates and newer drivers) and then let you into the Windows 11 desktop with its normal UI.
+After updating, the online version will restart 3 times (since Windows installs updates and newer drivers) and then let you into enter the Windows 11 desktop with its normal UI.
 
 Again, the offline version skips the update process and makes writing Windows 11 to disk faster, but you'll still need to wait a while for Windows updates afterward, since they're needed to install drivers (and this makes the overall process more automatic, in my opinion).
 
-If you've made it this far, thank you for using my software. I want to remind you that I do not assume responsibility for any damages or data loss. However, I can promise that everything posted here was tested at least once installing Windows 11 on one of my ASUS Vivobook laptops (both on AMD and Intel platforms). If I find a bug, I'll report it in the "File with bugs."
+If you've made it this far, thank you for using my version of this software.
+
+I remind you that I do not assume responsibility for any damages or data loss. However, I can promise that everything posted here was tested at least once installing Windows 11 on one of my ASUS Vivobook laptops (both on AMD and Intel platforms). 
+
+If you need to use any versions the website ( https://schneegans.de/windows/unattend-generator/ ) lets you to wrap the XML files into an .iso file which ultimately enables you to use the files of this project on any Virtual Machine (as in the video I attached below using ORACLE Virtual box).
+
+If I find a bug, I'll report it in the "File with bugs."
 
 Note: If your system is officially supported by Windows 11, the bypasses in the code (for TPM, CPU generation, and RAM requirements) will simply be ignored by the installer.
 
 Before using any of the scripts, please read the "Warnings and operation procedures of the scripts," as these tools are highly automatic and can result in loss of data if used carelessly. Thank you for your understanding!
 
-Take a look on how it works! 
+Take a look on how it works via our TikTok video! 
 https://vm.tiktok.com/ZN8MoXddh/
