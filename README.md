@@ -1,32 +1,59 @@
-# Making-win11-install-Authomatic
-In this repo branch, I post the latest XML files I use to install Windows 11. There are many reasons you might need these — the main one being that these files drastically reduce Windows 11 installation time by automatically answering the questions the installer and OOBE ask you every time you install the OS. Made with the schneegans.de generator.
+# Win11_Unattended.Xml_Toolkit
 
-The main reason I made these files: I got tired of clicking through OOBE and manually setting up accounts every time I installed Windows, so I put together an automated config using the Schneegans unattend generator. Tested it on a Ryzen 7 laptop over USB 2.0 — full install to a ready-to-use desktop in about 20 minutes (drivers still need to be added separately afterward).
+Automatic Windows 11 Pro installs with `autounattend.xml` answer files, made with the [Schneegans unattend generator](https://schneegans.de/windows/unattend-generator/).
 
-I am not forcibly debloating Windows 11 with the files I generated, as that could break some Windows 11 features.
+In this repo I post the latest XML files I use to install Windows 11. There are many reasons you might need them, but the main one is that they drastically reduce installation time by automatically answering the questions the installer and OOBE ask you every time you install the OS.
 
-The online and offline versions are meant to install Windows 11 Pro with language support for the following locales: English (US), Romanian, and Norwegian.
+I made these files because I got tired of clicking through OOBE and setting up accounts by hand on every install, so I put together an automated config with the Schneegans generator. I tested it on a Ryzen 7 laptop over USB 2.0: a full install to a ready-to-use desktop took about 20 minutes (drivers still need to be added separately afterward).
 
-After installation, the script makes OOBE ask you for a network connection (choose "I don't have network" for the offline version, or connect to WiFi/LAN if using the online version), and to set up a username and password for the local account (password is not mandatory — you can click Next if you don't need one; the advantage is that you won't need a password to unlock/start your Windows 11 laptop anymore).
+I'm not forcibly debloating Windows 11 with these files, as that could break some Windows features.
 
-After updating, the online version will restart 3 times (since Windows installs updates and newer drivers) and then let you into enter the Windows 11 desktop with its normal UI.
+Before you use any file, read the [guide]
 
-Again, the offline version skips the update process and makes writing Windows 11 to disk faster, but you'll still need to wait a while for Windows updates afterward, since they're needed to install drivers (and this makes the overall process more automatic, in my opinion).
+https://github.com/thunderstorm2kN/Win11_Unattended.Xml_Toolkit/blob/main/Warnings%20and%20operation%20procedures%20of%20the%20scripts
+
+
+These tools are highly automatic. Installation starts as soon as you click **Next** on the disk selection screen, so double-check the disk you select. Careless use can cause data loss.
+
+What's in the files
+
+The online and offline versions install **Windows 11 Pro** with keyboard layouts for **English (US), Romanian and Norwegian**. The display language stays English (US).
+
+The bypasses for the hardware requirements (TPM, Secure Boot and RAM) are simply ignored by the installer if your system is officially supported by Windows 11.
+
+ What to expect
+
+After installation, OOBE asks you for a network connection (choose "I don't have network" for the offline version, or connect to Wi-Fi/LAN for the online version) and for a username and password for the local account. The password is optional: you can click Next to leave it empty, and then you won't need a password to unlock or start your Windows 11 laptop.
+
+After this, Windows starts updating, which depends on your internet speed. The online version usually restarts around 3 times (since Windows installs updates and newer drivers) and then lets you into the Windows 11 desktop with its normal UI.
+
+The offline version skips the update process and makes writing Windows 11 to disk faster, but you'll still need to wait for Windows Update afterward, since that's how most drivers get installed. In my opinion this makes the overall process more automatic.
+
+The full step-by-step instructions, including how to prepare the USB stick, are in the
+
+https://github.com/thunderstorm2kN/Win11_Unattended.Xml_Toolkit/blob/main/Warnings%20and%20operation%20procedures%20of%20the%20scripts
+
+Try it in a virtual machine
+
+The Schneegans website can wrap the XML files into an `.iso`, which lets you use the files of this project on any virtual machine (as in the video below, using Oracle VirtualBox).
+
+See how it works:
+
+- Video: [TikTok demo] (https://vm.tiktok.com/ZN8MoXddh/)
+
+- Step-by-step screenshots: [screenshots folder]
+  https://github.com/thunderstorm2kN/Win11_Unattended.Xml_Toolkit/tree/main/screenshots
+
+Bugs
+
+If I find a bug, I'll report it in the [File with bugs] https://github.com/thunderstorm2kN/Win11_Unattended.Xml_Toolkit/blob/main/The%20%22Bugs%22%20file
+
+Disclaimer
+
+I do not assume responsibility for any damages or data loss. However, I can promise that everything posted here was tested at least once installing Windows 11 on one of my ASUS Vivobook laptops (both AMD and Intel platforms).
 
 If you've made it this far, thank you for using my version of this software.
 
-I remind you that I do not assume responsibility for any damages or data loss. However, I can promise that everything posted here was tested at least once installing Windows 11 on one of my ASUS Vivobook laptops (both on AMD and Intel platforms). 
+Credits
 
-If you need to use any versions the website ( https://schneegans.de/windows/unattend-generator/ ) lets you to wrap the XML files into an .iso file which ultimately enables you to use the files of this project on any Virtual Machine (as in the video I attached below using ORACLE Virtual box).
-
-If I find a bug, I'll report it in the "File with bugs."
-
-Note: If your system is officially supported by Windows 11, the bypasses in the code (for TPM, CPU generation, and RAM requirements) will simply be ignored by the installer.
-
-Before using any of the scripts, please read the "Warnings and operation procedures of the scripts," as these tools are highly automatic and can result in loss of data if used carelessly. Thank you for your understanding!
-
-Take a look on how it works via our TikTok video! 
-https://vm.tiktok.com/ZN8MoXddh/
-
-Also take a look at the screenshots folder to see how our script operates step-by-step. 
-https://github.com/thunderstorm2kN/Win11_Unattended.Xml_Toolkit/tree/main/screenshots
+Answer files generated with Christoph Schneegans' [Unattend Generator](https://schneegans.de/windows/unattend-generator/).
